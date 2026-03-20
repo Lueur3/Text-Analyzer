@@ -10,20 +10,20 @@ def validate_file_path(filename: str) -> str:
     if filename:
         file_path = os.path.abspath(filename.rstrip())
         if not (os.path.exists(file_path)):
-            raise FileNotFoundError(f"Файл по адресу {file_path} не найден.")
+            raise FileNotFoundError(f"The file at {file_path} was not found.")
         elif not (os.path.splitext(file_path)[1] in SUPPORTED_EXTENSIONS):
-            raise ValueError("Файл содержит неверный тип расширения.")
+            raise ValueError("The file contains an incorrect extension type.")
         elif not (os.access(file_path, os.R_OK)):
-            raise PermissionError(f"У файла нет прав доступа.")
+            raise PermissionError(f"The file does not have access rights.")
 
         return file_path
     else:
-        raise ValueError("Путь к файлу не указан.")
+        raise ValueError("The file path is not specified.")
 
 
 def raw_text(text: str):
     if not (text and text.strip()):
-        raise ValueError("Введенный текст пуст или содержит только пробелы.")
+        raise ValueError("The entered text is empty or contains only spaces.")
 
 
 def get_file_lines(file_path: str) -> Iterable[str]:
