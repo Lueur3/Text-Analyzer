@@ -1,9 +1,21 @@
 from typing import Dict, List, Tuple
 
 
-def init_stats() -> Dict:
-    dc_stat = {"total_count": 0, "word_frequencies": {}, "longest_word": ""}
-
+def init_stats(type, filename="") -> Dict:
+    if type == 1:
+        dc_stat = {
+            "statistic_type": f"File - {filename}",
+            "total_count": 0,
+            "word_frequencies": {},
+            "longest_word": "",
+        }
+    else:
+        dc_stat = {
+            "statistic_type": "User text",
+            "total_count": 0,
+            "word_frequencies": {},
+            "longest_word": "",
+        }
     return dc_stat
 
 
