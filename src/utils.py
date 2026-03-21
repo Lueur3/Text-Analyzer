@@ -1,5 +1,6 @@
 import os
 import string
+import json
 from collections.abc import Iterable
 
 SUPPORTED_EXTENSIONS = (".txt",)
@@ -39,3 +40,20 @@ def get_text_lines(text: str) -> Iterable[str]:
 
 def preprocess_line(line: str) -> str:
     return line.lower().strip().translate(PUNCTUATION_MAP)
+
+
+def save_stats(stats: dict):
+    file_path = "../data/output.json"
+    if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
+        with open(file_path, "r", encoding="utf-8") as f:
+            try:
+                data = json.load(f)
+            except json.JSONDecodeError:
+                data = []
+    else:
+        data = []
+
+    data.append(stats)
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
