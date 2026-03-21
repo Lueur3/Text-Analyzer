@@ -1,0 +1,12 @@
+[
+    {
+        "statistic_type": "File - Text-Analyzer/data/example_text.txt",
+        "total_count": 12283,
+        "longest_word": "усовершенствованными"
+    },
+    {
+        "statistic_type": "User text",
+        "total_count": 122,
+        "longest_word": "правописанию"
+    }
+]
