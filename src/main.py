@@ -24,6 +24,10 @@ def show_results(stats: dict):
     for word in top_words:
         print(f"'{word[0]}' - {word[1]}")
 
+    keys = ("statistic_type", "total_count", "longest_word")
+    to_save = {k: v for k, v in stats.items() if k in keys}
+    ut.save_stats(to_save)
+
 
 def check_line(lines_generator, stats):
     for line in lines_generator:
@@ -54,7 +58,7 @@ match user_choice:
         try:
             file_path = ut.validate_file_path(filename)
 
-            stats = ps.init_stats()
+            stats = ps.init_stats(user_choice, file_path)
 
             lines_generator = ut.get_file_lines(file_path)
 
@@ -78,7 +82,7 @@ match user_choice:
         try:
             ut.raw_text(user_text)
 
-            stats = ps.init_stats()
+            stats = ps.init_stats(user_choice)
             lines_generator = ut.get_text_lines(user_text)
             check_line(lines_generator, stats)
 
