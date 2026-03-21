@@ -3,11 +3,11 @@ from src.processor import init_stats, update_stats, get_top_words
 
 
 @pytest.mark.parametrize(
-    "text_type, filename, expected_dict_type",
-    [(2, "User text", dict)],
+    "text_type, filename",
+    [(2, "User text")],
 )
-def test_type_dict(text_type, filename, expected_dict_type):
-    assert type(init_stats(text_type, filename)) == expected_dict_type
+def test_type_dict(text_type, filename):
+    assert isinstance((init_stats(text_type, filename)), dict)
 
 
 @pytest.mark.parametrize(
@@ -46,14 +46,14 @@ def test_values_dict(text_type, filename, expected_dict):
 
 
 @pytest.fixture
-def exmpty_dict():
-    dc = init_stats("User text")
+def empty_dict():
+    dc = init_stats(2, "User text")
     return dc
 
 
 @pytest.fixture
 def example_dict():
-    dc = init_stats("User text")
+    dc = init_stats(2, "User text")
     update_stats("apple banana ananas cherry banana apricot clackberry clementine", dc)
     return dc
 
@@ -67,23 +67,23 @@ def example_dict():
         )
     ],
 )
-def test_update_stats(line, expected_res, exmpty_dict):
-    update_stats(line, exmpty_dict)
-    assert exmpty_dict["word_frequencies"] == expected_res
+def test_update_stats(line, expected_res, empty_dict):
+    update_stats(line, empty_dict)
+    assert empty_dict["word_frequencies"] == expected_res
 
 
 @pytest.mark.parametrize(
     "line, expected_res", [("apple banana ananas cherry", "cherry")]
 )
-def test_long_word_stats(line, expected_res, exmpty_dict):
-    update_stats(line, exmpty_dict)
-    assert exmpty_dict["longest_word"] == expected_res
+def test_long_word_stats(line, expected_res, empty_dict):
+    update_stats(line, empty_dict)
+    assert empty_dict["longest_word"] == expected_res
 
 
-def test_empty_update(exmpty_dict):
-    data = exmpty_dict
-    update_stats("", exmpty_dict)
-    assert exmpty_dict == data
+def test_empty_update(empty_dict):
+    data = empty_dict
+    update_stats("", empty_dict)
+    assert empty_dict == data
 
 
 @pytest.mark.parametrize(
@@ -95,19 +95,19 @@ def test_empty_update(exmpty_dict):
         )
     ],
 )
-def test_duplicate_words(line, expected_res, exmpty_dict):
-    update_stats(line, exmpty_dict)
-    assert exmpty_dict["word_frequencies"] == expected_res
+def test_duplicate_words(line, expected_res, empty_dict):
+    update_stats(line, empty_dict)
+    assert empty_dict["word_frequencies"] == expected_res
 
 
 @pytest.mark.parametrize(
     "line, expected_res",
     [("banana apple cherry cherry", {"banana": 2, "apple": 2, "cherry": 4})],
 )
-def test_sum_effects(line, expected_res, exmpty_dict):
-    update_stats(line, exmpty_dict)
-    update_stats(line, exmpty_dict)
-    assert exmpty_dict["word_frequencies"] == expected_res
+def test_sum_effects(line, expected_res, empty_dict):
+    update_stats(line, empty_dict)
+    update_stats(line, empty_dict)
+    assert empty_dict["word_frequencies"] == expected_res
 
 
 def test_sort_words(example_dict):
@@ -143,5 +143,5 @@ def test_not_enough_data(expected_res, ex_dict):
     assert get_top_words(ex_dict, 5) == expected_res
 
 
-def test_empty_data(exmpty_dict):
-    assert get_top_words(exmpty_dict["word_frequencies"]) == []
+def test_empty_data(empty_dict):
+    assert get_top_words(empty_dict["word_frequencies"]) == []
