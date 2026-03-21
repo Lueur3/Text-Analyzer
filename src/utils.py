@@ -10,8 +10,10 @@ PUNCTUATION_MAP = str.maketrans("", "", string.punctuation)
 def validate_file_path(filename: str) -> str:
     if filename:
         file_path = os.path.abspath(filename.rstrip())
-        if not os.path.exists(file_path):
-            raise FileNotFoundError(f"The file at {file_path} was not found.")
+        if not os.path.exists(file_path) or os.path.getsize(file_path) == 0:
+            raise FileNotFoundError(
+                f"The file at {file_path} was not found or file is empty."
+            )
         elif not os.path.splitext(file_path)[1] in SUPPORTED_EXTENSIONS:
             raise ValueError("The file contains an incorrect extension type.")
         elif not os.access(file_path, os.R_OK):
