@@ -1,33 +1,34 @@
 # Text Analyzer
 
-A program for performing statistical analysis of text data from files or console input.
+A tool for statistical analysis of text data from files or manual console input.
 
 ## Features
 
 - Total word count.
 - Search for the longest word.
 - Word frequency analysis.
-- Output of top-N most frequent words (default is 3).
-- Saving analysis results (metadata and statistics) to a JSON file.
-- Handling input errors and missing files.
+- Output of top-N most frequent words.
+- Saving results to a JSON file.
+- Input validation and exception handling.
 
-## Project Structure
+## Installation and Execution (Local)
 
-- `main.py`: Entry point and module coordination.
-- `utils.py`: Module for file system operations, validation, and text preprocessing.
-- `processor.py`: Module for statistics calculation and data analysis.
-- `tests/`: Unit tests based on pytest.
-- `data/`: Directory for input texts and output reports.
+1.  **Install dependencies**:
 
-## Installation and Execution
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-1. Install dependencies: `pip install pytest`.
-2. Run the program: `python src/main.py`.
+2.  **Run the application**:
 
-## Testing
+    ```bash
+    python src/main.py
+    ```
 
-To run the tests, use the following command:
-`pytest tests/test_processor.py`
+3.  **Run tests**:
+    ```bash
+    pytest tests/test_processor.py
+    ```
 
 ## Running with Docker
 
@@ -41,39 +42,41 @@ To run the tests, use the following command:
     ```bash
     docker run -it -v "$(pwd)/data:/app/data" text-analyzer:latest
     ```
+    _Note: the `-v` flag is required to persist `output.json` on your local machine._
 
 ---
 
 # Анализатор текста
 
-Программа для проведения статистического анализа текстовых данных из файлов или консольного ввода.
+Программа для статистического анализа текстовых данных из файлов или консольного ввода.
 
 ## Функционал
 
 - Подсчет общего количества слов.
 - Поиск самого длинного слова.
 - Анализ частоты встречаемости слов.
-- Вывод топ-N самых частых слов (по умолчанию 3).
-- Сохранение результатов анализа (метаданные и статистика) в JSON-файл.
-- Обработка ошибок ввода и отсутствия файлов.
+- Вывод топ-N самых частотных слов.
+- Сохранение результатов в JSON-файл.
+- Валидация входных данных и обработка исключений.
 
-## Структура проекта
+## Установка и запуск (Локально)
 
-- `main.py`: Точка входа и координация модулей.
-- `utils.py`: Модуль для работы с файловой системой, валидации и предобработки текста.
-- `processor.py`: Модуль для вычисления статистики и анализа данных.
-- `tests/`: Модульные тесты на базе pytest.
-- `data/`: Директория для входных текстов и выходных отчетов.
+1.  **Установка зависимостей**:
 
-## Установка и запуск
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-1. Установите зависимости: `pip install pytest`.
-2. Запустите программу: `python src/main.py`.
+2.  **Запуск программы**:
 
-## Тестирование
+    ```bash
+    python src/main.py
+    ```
 
-Для запуска тестов используйте команду:
-`pytest tests/test_processor.py`
+3.  **Запуск тестов**:
+    ```bash
+    pytest tests/test_processor.py
+    ```
 
 ## Запуск через Docker
 
@@ -87,3 +90,4 @@ To run the tests, use the following command:
     ```bash
     docker run -it -v "$(pwd)/data:/app/data" text-analyzer:latest
     ```
+    _Примечание: флаг `-v` необходим для сохранения `output.json` на локальном диске._
