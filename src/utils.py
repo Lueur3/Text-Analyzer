@@ -45,8 +45,8 @@ def preprocess_line(line: str) -> str:
 
 
 def save_stats(stats: dict):
-    file_path = "../data/output.json"
-    folder_path = "../data"
+    file_path = "data/output.json"
+    folder_path = "data/"
     os.makedirs(folder_path, exist_ok=True)
     if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
         with open(file_path, "r", encoding="utf-8") as f:
