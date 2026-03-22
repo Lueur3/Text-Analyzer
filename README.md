@@ -29,6 +29,19 @@ A program for performing statistical analysis of text data from files or console
 To run the tests, use the following command:
 `pytest tests/test_processor.py`
 
+## Running with Docker
+
+1.  **Build the image**:
+
+    ```bash
+    docker build -t text-analyzer .
+    ```
+
+2.  **Run the container**:
+    ```bash
+    docker run -it -v "$(pwd)/data:/app/data" text-analyzer:latest
+    ```
+
 ---
 
 # Анализатор текста
@@ -61,3 +74,16 @@ To run the tests, use the following command:
 
 Для запуска тестов используйте команду:
 `pytest tests/test_processor.py`
+
+## Запуск через Docker
+
+1.  **Сборка образа**:
+
+    ```bash
+    docker build -t text-analyzer .
+    ```
+
+2.  **Запуск контейнера**:
+    ```bash
+    docker run -it -v "$(pwd)/data:/app/data" text-analyzer:latest
+    ```
